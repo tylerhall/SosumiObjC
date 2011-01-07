@@ -19,7 +19,7 @@ REQUIREMENTS
 
  * [GTMHTTPFetcher](http://code.google.com/p/gtm-http-fetcher/) by Google
  * [NSData+Base64](http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html) by Matt Gallagher
- * [json-framework](http://code.google.com/p/json-framework/) by Stig Brautaset
+ * [json-framework](http://stig.github.com/json-framework/) by Stig Brautaset
  * SosumiObjC uses blocks - so you'll need iOS 4.0+ or Mac OS X 10.6+. Alternatively, you can use [PLBlocks](http://code.google.com/p/plblocks/) for older systems.
 
 USAGE
