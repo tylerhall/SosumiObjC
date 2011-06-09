@@ -61,15 +61,15 @@
 #pragma mark -
 
 - (void)getAccountPartition:(SSMAccount *)acct {
-	NSString *urlStr = [NSString stringWithFormat:@"https://fmipmobile.me.com/fmipservice/device/%@/initClient", acct.username];
+	NSString *urlStr = [NSString stringWithFormat:@"https://fmipmobile.icloud.com/fmipservice/device/%@/initClient", acct.username];
 	NSURL *url = [NSURL URLWithString:urlStr];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	GTMHTTPFetcher *fetcher = [self getPreparedFMIPRequest:request forAccount:acct];
 
 	NSMutableDictionary *postDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSDictionary *clientContext = [NSDictionary dictionaryWithObjectsAndKeys:@"FindMyiPhone", @"appName",
-								   @"1.1", @"appVersion",
-								   @"99", @"buildVersion",
+								   @"1.2", @"appVersion",
+								   @"145", @"buildVersion",
 								   @"0000000000000000000000000000000000000000", @"deviceUDID",
 								   @"109541", @"inactiveTime",
 								   @"4.2.1", @"osVersion",
@@ -80,8 +80,8 @@
 	[fetcher setPostData:[postStr dataUsingEncoding:NSUTF8StringEncoding]];
 
 	[fetcher beginFetchWithCompletionHandler:^(NSData *retrievedData, NSError *error) {
-		if([[fetcher responseHeaders] valueForKey:@"X-Apple-Mme-Host"]) {
-			acct.partition = [[fetcher responseHeaders] valueForKey:@"X-Apple-Mme-Host"];
+		if([[fetcher responseHeaders] valueForKey:@"X-Apple-MMe-Host"]) {
+			acct.partition = [[fetcher responseHeaders] valueForKey:@"X-Apple-MMe-Host"];
 			NSLog(@"got partition = %@", acct.partition);
 			[self initClient:acct];
 		} else {
@@ -101,8 +101,8 @@
 
 	NSMutableDictionary *postDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSDictionary *clientContext = [NSDictionary dictionaryWithObjectsAndKeys:@"FindMyiPhone", @"appName",
-								   @"1.1", @"appVersion",
-								   @"99", @"buildVersion",
+								   @"1.2", @"appVersion",
+								   @"145", @"buildVersion",
 								   @"0000000000000000000000000000000000000000", @"deviceUDID",
 								   @"109541", @"inactiveTime",
 								   @"4.2.1", @"osVersion",
@@ -147,8 +147,8 @@
 	
 	NSMutableDictionary *postDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSDictionary *clientContext = [NSDictionary dictionaryWithObjectsAndKeys:@"FindMyiPhone", @"appName",
-								   @"1.1", @"appVersion",
-								   @"99", @"buildVersion",
+								   @"1.2", @"appVersion",
+								   @"145", @"buildVersion",
 								   @"0000000000000000000000000000000000000000", @"deviceUDID",
 								   @"109541", @"inactiveTime",
 								   @"4.2.1", @"osVersion",
@@ -205,8 +205,8 @@
 	
 	NSMutableDictionary *postDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSDictionary *clientContext = [NSDictionary dictionaryWithObjectsAndKeys:@"FindMyiPhone", @"appName",
-								   @"1.1", @"appVersion",
-								   @"99", @"buildVersion",
+								   @"1.2", @"appVersion",
+								   @"145", @"buildVersion",
 								   @"0000000000000000000000000000000000000000", @"deviceUDID",
 								   @"109541", @"inactiveTime",
 								   @"4.2.1", @"osVersion",
@@ -250,8 +250,8 @@
 	
 	NSMutableDictionary *postDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSDictionary *clientContext = [NSDictionary dictionaryWithObjectsAndKeys:@"FindMyiPhone", @"appName",
-								   @"1.1", @"appVersion",
-								   @"99", @"buildVersion",
+								   @"1.2", @"appVersion",
+								   @"145", @"buildVersion",
 								   @"0000000000000000000000000000000000000000", @"deviceUDID",
 								   @"109541", @"inactiveTime",
 								   @"4.2.1", @"osVersion",
@@ -289,9 +289,9 @@
 	[request addValue:@"2.0" forHTTPHeaderField:@"X-Apple-Find-Api-Ver"];
 	[request addValue:@"UserIdGuest" forHTTPHeaderField:@"X-Apple-Authscheme"];
 	[request addValue:@"1.0" forHTTPHeaderField:@"X-Apple-Realm-Support"];
-	[request addValue:@"Find iPhone/1.1 MeKit (iPad: iPhone OS/4.2.1)" forHTTPHeaderField:@"User-agent"];
+	[request addValue:@"Find iPhone/1.2 MeKit (iPad: iPhone OS/4.2.1)" forHTTPHeaderField:@"User-agent"];
 	[request addValue:@"iPad" forHTTPHeaderField:@"X-Client-Name"];
-	[request addValue:@"0cf3dc501ff812adb0b202baed4f37274b210853" forHTTPHeaderField:@"X-Client-Uuid"];
+	[request addValue:@"5b9f404f56b585cf58d2bf178f6068cb4b930000" forHTTPHeaderField:@"X-Client-UUID"];
 	[request addValue:@"en-us" forHTTPHeaderField:@"Accept-Language"];
 	
 	NSData *credentials64 = [[NSString stringWithFormat:@"%@:%@", acct.username, acct.password] dataUsingEncoding:NSASCIIStringEncoding];

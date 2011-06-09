@@ -52,16 +52,18 @@
 	device.isLocating = ([[dict valueForKey:@"isLocating"] intValue] == 1) ? YES : NO;
 	device.locationEnabled = ([[dict valueForKey:@"locationEnabled"] intValue] == 1) ? YES : NO;
 	device.name = [dict valueForKey:@"name"];
-	device.horizontalAccuracy = [[dict valueForKeyPath:@"location.horizontalAccuracy"] floatValue];
-	device.locationIsOld = ([[dict valueForKeyPath:@"location.isOld"] intValue] == 1) ? YES : NO;
-	device.latitude = [[dict valueForKeyPath:@"location.latitude"] doubleValue];
-	device.longitude = [[dict valueForKeyPath:@"location.longitude"] doubleValue];
-	device.locationFinished = ([[dict valueForKeyPath:@"location.locationFinished"] intValue] == 1) ? YES : NO;
-	device.positionType = [dict valueForKeyPath:@"location.positionType"];
-	device.locationTimestamp = [NSDate dateWithTimeIntervalSince1970:[[dict valueForKeyPath:@"location.timeStamp"] doubleValue] / 100];
+    if(![[dict valueForKey:@"location"] isKindOfClass:[NSNull class]]) {
+        device.horizontalAccuracy = [[dict valueForKeyPath:@"location.horizontalAccuracy"] floatValue];
+        device.locationIsOld = ([[dict valueForKeyPath:@"location.isOld"] intValue] == 1) ? YES : NO;
+        device.latitude = [[dict valueForKeyPath:@"location.latitude"] doubleValue];
+        device.longitude = [[dict valueForKeyPath:@"location.longitude"] doubleValue];
+        device.locationFinished = ([[dict valueForKeyPath:@"location.locationFinished"] intValue] == 1) ? YES : NO;
+        device.positionType = [dict valueForKeyPath:@"location.positionType"];
+        device.locationTimestamp = [NSDate dateWithTimeIntervalSince1970:[[dict valueForKeyPath:@"location.timeStamp"] doubleValue] / 100];
+    }
 
 	NSLog(@"%@", device);
-	
+
 	return device;
 }
 
@@ -76,13 +78,15 @@
 	self.isLocating = ([[dict valueForKey:@"isLocating"] intValue] == 1) ? YES : NO;
 	self.locationEnabled = ([[dict valueForKey:@"locationEnabled"] intValue] == 1) ? YES : NO;
 	self.name = [dict valueForKey:@"name"];
-	self.horizontalAccuracy = [[dict valueForKeyPath:@"location.horizontalAccuracy"] floatValue];
-	self.locationIsOld = ([[dict valueForKeyPath:@"location.isOld"] intValue] == 1) ? YES : NO;
-	self.latitude = [[dict valueForKeyPath:@"location.latitude"] doubleValue];
-	self.longitude = [[dict valueForKeyPath:@"location.longitude"] doubleValue];
-	self.locationFinished = ([[dict valueForKeyPath:@"location.locationFinished"] intValue] == 1) ? YES : NO;
-	self.positionType = [dict valueForKeyPath:@"location.positionType"];
-	self.locationTimestamp = [NSDate dateWithTimeIntervalSince1970:[[dict valueForKeyPath:@"location.timeStamp"] doubleValue] / 1000];	
+    if(![[dict valueForKey:@"location"] isKindOfClass:[NSNull class]]) {
+        self.horizontalAccuracy = [[dict valueForKeyPath:@"location.horizontalAccuracy"] floatValue];
+        self.locationIsOld = ([[dict valueForKeyPath:@"location.isOld"] intValue] == 1) ? YES : NO;
+        self.latitude = [[dict valueForKeyPath:@"location.latitude"] doubleValue];
+        self.longitude = [[dict valueForKeyPath:@"location.longitude"] doubleValue];
+        self.locationFinished = ([[dict valueForKeyPath:@"location.locationFinished"] intValue] == 1) ? YES : NO;
+        self.positionType = [dict valueForKeyPath:@"location.positionType"];
+        self.locationTimestamp = [NSDate dateWithTimeIntervalSince1970:[[dict valueForKeyPath:@"location.timeStamp"] doubleValue] / 1000];
+    }
 }
 
 - (NSString *)description {
